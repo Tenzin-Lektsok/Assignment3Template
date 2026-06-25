@@ -407,6 +407,58 @@ using System;
 
          }
 
+          // https://dev.to/shivams136/leetcode-1721-swapping-nodes-in-a-linked-list-solution-m0
+         // https://www.geeksforgeeks.org/dsa/search-an-element-in-a-doubly-linked-list/
+         // Swap is made of two simple parts. First we find the two nodes we want to swap
+         //Second we swap their values using temp variable. 
+         // This idea is from the Dev community article. we learned that we don't need to swap actual nodes by changing pointers.
+         //we just swap the data inside the node which is simpler and efficient.
+         // For finding the nodes we used the same search idea from the Find method, we search by value instead of position
+         public void Swap(T key1,T key2)
+         {
+            //Base case to check whether doubly linked is empty or not.
+             if(size == 0)
+             {
+                Console.WriteLine("Doubly linked list is empty");
+                return;
+
+             }
+
+             // We need two temporary pointers p1 and p2 to find the two nodes we want to swap.
+             // Both pointers start from head and traverse forward through the list.
+             // p1 traverses to find the node with key1, and p2 traverses to find the node with key2.
+
+             //Create first pointer p1 for first value.
+             Node<T> p1 = head;
+             // Loop while p1 is not null and p1 element is NOT equal to key1
+             // it stops when we find the node with key1 OR reach the end of the list
+             while( p1 != null && !p1.element.Equals(key1)){
+                p1 = p1.next;
+             }
+              //create second pointer p2 for second value.
+              Node<T> p2 = head;
+            // Loop while p2 is not null and p2 element is NOT equal to key2
+            // it stops when we find the node with key2 OR reach the end of the list
+             while( p2 != null && !p2.element.Equals(key2)){
+                p2 = p2.next;
+             }
+            
+            // If either pointer is null that key was not found so we cannot swap
+            if (p1 == null || p2 == null)
+             {
+                Console.WriteLine("One or both keys not found");
+                return;
+             }
+
+             //Once both nodes are found, we swap their values using a temp variable.
+             //then save p1 value in temp, then put p2 value into p1, then put temp value into p2, 
+             //we only swap value and prev and next pointer stay same.
+             T temp = p1.element;
+             p1.element = p2.element;
+             p2.element = temp;
+
+         }
+
 
     }
         

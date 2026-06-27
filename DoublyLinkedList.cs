@@ -534,6 +534,50 @@ using System;
 
         }
 
+        // https://www.geeksforgeeks.org/dsa/rotate-doubly-linked-list-n-nodes/
+        // we follow the same 3 step logic as GeeksforGeeks source
+        // Step 1: make list circular, Step 2: move head and tail forward, Step 3: break circular link
+        public void RotateLeft()
+        {
+            // base case — if list is empty or has only one node there is nothing to rotate
+            if(size <= 1){
+                return;
+            }
+            
+            // we save the current first node in oldHead before we start changing pointers
+            // we need this because we are about to set head.prev = null
+            // which would cut the link where second node prev points back to first node
+            Node<T> oldHead = head;
+
+            //step1, Make the circular doubly linked list
+            //connect last node forward to first node(oldHead)
+            tail.next = oldHead;
+            //connect first node(oldHead) backward to last node
+            oldHead.prev = tail;
+
+            //geekforgeek uses a for loop to rotate p by the given posiition
+            /*for (int count = 1; count <= p; count++) {
+            head = head.next;
+            tail = tail.next;
+             }*/
+            //step2, we move head and tail by one position
+            //head moves from first node to second node(new head)
+            head = head.next;
+            //tail moves from last node to first node(new tail)
+            tail = tail.next;
+
+            //step3, break circular doubly linked list connection
+            //new tail is old first node, and we set its next to null to make it list tail end properly
+            tail.next = null;
+            //new head is old second node, and its prev set to null to make its head of list properly
+            head.prev = null;
+            
+
+        }
+
+
+
+
 
 
 

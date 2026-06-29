@@ -23,6 +23,20 @@ public class Animal
         Z = z;
     }
 
-
+     // https://stackoverflow.com/questions/23937825/calculating-the-distance-between-2-points-in-2d-and-3d
+    // https://www.educative.io/answers/how-to-compute-euclidean-distance-in-c-sharp
+    // we only pass one parameter (other) because this animal is already available as 'this'
+    // it gives us two points — this animal (first point) and other animal (second point)
+    // Find the 3D Euclidean distance between this animal and another animal.
+    // The formula is based on Pythagorean theorem
+    // distance = sqrt( (x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2 )
+    public double FindDistance(Animal other)
+    {
+        int dx = other.X - this.X;
+        int dy = other.Y - this.Y;
+        int dz = other.Z - this.Z;
+        return Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        
+    }
 
 }

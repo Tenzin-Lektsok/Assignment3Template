@@ -1,18 +1,13 @@
-﻿public class Cat : IComparable
+﻿public class Cat : Animal
 {
-    //Store cat name.
-    public string Name { get; set; }
-
-    // Store cat position on the grid.
-    public int X { get; set; }
-    public int Y { get; set; }
-
-    // Constructor to create a cat with name and position.
-    public Cat(string name, int x, int y)
+    
+    // constructor calls base Animal constructor to set Name, ID, X, Y, Z
+    //we add id and z as per assignment3 
+    public Cat(string name, string id, int x, int y, int z) : base(name, id, x, y, z)
     {
-        Name = name;
-        X = x;
-        Y = y;
+        //initialize empty smell list
+        SmellList = new DoublyLinkedList<Animal>();    
+
     }
 
     // Compare cat names for sorting.

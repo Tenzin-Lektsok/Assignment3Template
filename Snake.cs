@@ -1,28 +1,19 @@
 ﻿using System;
 
-public class Snake : IComparable
+public class Snake : Animal
 {
-    //Store snake name.
-    public string Name { get; set; }
+     // SmellList stores all animals within 10 unit radius of this snake
+     // it updates every time the snake moves
+     public DoublyLinkedList<Animal> SmellList { get; set; }
 
-    //Store snake position on the grid.
-    public int X { get; set; }
-    public int Y { get; set; }
-
-    //Constructor to create snake with snake with name and position
-    public Snake(string name, int x, int y)
+     // constructor calls base Animal constructor to set Name, ID, X, Y, Z
+    //we add id and z as per assignment3 
+    public Snake(string name, string id, int x, int y, int z) : base(name, id, x, y, z)
     {
-        Name = name;
-        X = x;
-        Y = y;
+        // SmellList is Snake specific so we initialize it here
+         SmellList = new DoublyLinkedList<Animal>();
     }
-
-    //Compare snake names for sorting.
-    public int CompareTo(object? obj)
-    {
-        Snake other = (Snake)obj;
-        return Name.CompareTo(other.Name);
-    }
+    
 
     //Move one step toward the bird.
     public void MoveToward(Bird bird)

@@ -15,23 +15,25 @@ public class Snake : Animal
     }
     
 
-    //Move one step toward the bird.
-    public void MoveToward(Bird bird)
+    // Move one step toward the target animal
+    // updated from A2 to use Animal instead of Bird so snake can move toward any animal
+    //added Z movement because animals now move in 3D grid
+    public void MoveToward(Animal target)
     {
-        int dx = bird.X - X;
-        int dy = bird.Y - Y;
+        int dx = target.X - this.X;
+        int dy = target.Y - this.Y;
+        int dz = target.Z - this.Z;
 
-        if (dx > 0)
-            X++;
-        else if (dx < 0)
-            X--;
+        if (dx > 0) X++;
+        else if (dx < 0) X--;
 
-        if (dy > 0)
-            Y++;
-        else if (dy < 0)
-            Y--;
+        if (dy > 0) Y++;
+        else if (dy < 0) Y--;
 
-        Console.WriteLine(Name + " moved to (" + X + ", " + Y + ")");
+         if (dz > 0) Z++;
+        else if (dz < 0) Z--;
+
+        Console.WriteLine(Name + " moved to (" + X + ", " + Y + "," + Z + ")");
     }
 
     //Snake eats the first bird in the list.

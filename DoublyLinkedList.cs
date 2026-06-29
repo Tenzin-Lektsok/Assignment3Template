@@ -609,6 +609,100 @@ using System;
 
         }
 
+        // https://www.geeksforgeeks.org/dsa/insertion-sort-doubly-linked-list/
+        // we chose insertion sort because it works with linked lists and no indices needed
+        // we take each node from unsorted list one by one and place it in correct position in sorted list
+        // source returns sorted head but we update head and tail directly because our class tracks both
+        public void Sort()
+        {
+            // if list is empty or has only one node there is nothing to sort so we return
+            if(size <= 1)
+            {
+                return;
+
+            }
+            
+           // sorted is the head pointer of the sorted list we are building
+            // it starts as null because sorted list is empty at the beginning
+            // think of sorted the same way as regular head which always points to the first node of sorted list
+            Node<T> sorted = null;
+            
+            // curr starts at head and moves through each node in the unsorted list one by one
+            Node<T> curr = head;
+           
+           // outer while loop runs once for each node in the unsorted list
+            while(curr != null)
+            {
+                 // we save curr.next in next before changing any pointers
+                 // because curr.next will be overwritten in the next line by curr.next = sorted
+                // sorted is null at the beginning so curr.next becomes null
+                 // if we do not save it first we lose the rest of the unsorted list
+                Node<T> next = curr.next;
+                
+                // if sorted list is empty OR first node of sorted list is bigger than curr
+                // then curr is the smallest so it goes at the BEGINNING of sorted list
+                if(sorted == null || sorted.element.CompareTo(curr.element) >= 0)
+                {
+                    // curr.next now points to sorted head
+                    // sorted is null at the beginning so curr.next = null
+                    // when sorted has nodes in next iterations curr.next will carry that node address
+                    curr.next = sorted;
+                    
+                    // if sorted is not empty we fix its prev pointer back to curr
+                    if(sorted != null)
+                    {
+                        sorted.prev = curr;
+                    }
+                    // sorted head pointer now points to curr, curr is new first node of sorted list
+                    sorted = curr;
+                    // first node of sorted list has no previous node so set prev to null
+                    sorted.prev = null;
+                }
+                else{
+                    // sorted head is smaller than curr so curr goes somewhere inside sorted list
+                    // we create currSorted pointer to traverse sorted list and find the right position
+                    Node<T> currSorted = sorted;
+                    
+                    // currSorted moves forward through sorted list while next node is smaller than curr
+                    // when loop stops when currSorted.next is null (end of sorted list),
+                    // OR when currSorted.next element is bigger than or equal to curr element
+                    while(currSorted.next != null && currSorted.next.element.CompareTo(curr.element) < 0)
+                    {
+                        currSorted = currSorted.next;
+
+                    }  
+                    // curr next pointer now points to the node that was after currSorted, this links curr forward into the sorted list          
+                    curr.next = currSorted.next;
+
+                    //if there is a node after currSorted, point its prev pointer back to curr
+                    if(currSorted.next != null)
+                    {
+                        currSorted.next.prev = curr;
+
+                    }
+                    //link currSorted next pointer forward to curr
+                    currSorted.next = curr;
+                    //link curr prev pointer backward to currSorted node.
+                    curr.prev = currSorted;
+                }
+                //move curr to the next unsorted node we saved at the beginning 
+                //and next was saved as curr.next before we changed any pointer.
+                curr = next;
+                
+               }
+                //source just returns sorted head
+                 //we update head and tail directly because our DoublyLinkedList class tracks both head and tail
+                head = sorted;
+                //tail pointer is set at first node(head) of sorted list to traverse in while loop. 
+                tail = head;
+               // tail moves forward until tail.next is null then it stops at the last node
+                while(tail.next != null){
+                    tail = tail.next;
+                }
+        
+        
+        }
+
 
 
 

@@ -29,11 +29,11 @@ using System;
     class DoublyLinkedList<T>
     {
         //Within doubly linked list class we declare head of type node to store reference of first Node of doubly linked list
-        private Node<T> head;
+        public Node<T> head;
         //Declare also type node to store reference of last node of doubly linked list
-        private Node<T> tail;
+        public Node<T> tail;
         // We declare a variable size to track and store the count of the number of nodes present in the doubly linked list at any given time."
-        private int size;
+        public int size;
 
         // Reference: Udemy — Data Structures and Algorithms in Depth using C#
         // https://www.udemy.com/course/data-structures-and-algorithms-in-depth-using-c-sharp/learn/lecture/23205590#content
@@ -641,7 +641,7 @@ using System;
                 
                 // if sorted list is empty OR first node of sorted list is bigger than curr
                 // then curr is the smallest so it goes at the BEGINNING of sorted list
-                if(sorted == null || sorted.element.CompareTo(curr.element) >= 0)
+                if(sorted == null || ((IComparable)sorted.element).CompareTo(curr.element) >= 0)
                 {
                     // curr.next now points to sorted head
                     // sorted is null at the beginning so curr.next = null
@@ -666,7 +666,7 @@ using System;
                     // currSorted moves forward through sorted list while next node is smaller than curr
                     // when loop stops when currSorted.next is null (end of sorted list),
                     // OR when currSorted.next element is bigger than or equal to curr element
-                    while(currSorted.next != null && currSorted.next.element.CompareTo(curr.element) < 0)
+                    while(currSorted.next != null && ((IComparable)currSorted.next.element).CompareTo(curr.element) < 0)
                     {
                         currSorted = currSorted.next;
 

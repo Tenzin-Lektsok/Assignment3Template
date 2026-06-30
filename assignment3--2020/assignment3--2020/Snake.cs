@@ -1,6 +1,8 @@
 ﻿using System;
 
-public class Snake : Animal
+namespace Assignment3Template
+{
+     public class Snake : Animal
 {
      // SmellList stores all animals within 10 unit radius of this snake
      // it updates every time the snake moves
@@ -89,4 +91,5 @@ public class Snake : Animal
     {
         return Name + "(ID:" + ID + " X:" + X + " Y:" + Y + " Z:" + Z + ")";
     }
+}
 }

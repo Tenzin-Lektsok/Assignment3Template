@@ -356,26 +356,31 @@ namespace Assignment3Template
             Bird testBird = birds.head.element;
             Console.WriteLine("\nTesting with bird: " + testBird);
 
-           // move this bird so it gets a new random position and a Speed value gets calculated
-           testBird.Move(random);
-           Console.WriteLine("After moving, " + testBird.Name + " Speed = " + testBird.Speed);
+            // assignment says we should run a small number of rounds
+            // so we run 3 rounds here to print the bird's speed each time and check HearMovement works
+           for(int round = 1; round <= 3; round++)
+           {
+               Console.WriteLine("\n==== Round: " + round + " ===");
+              // move this bird so it gets a new random position and a Speed value gets calculated
+               testBird.Move(random);
+               Console.WriteLine("After moving, " + testBird.Name + " Speed = " + testBird.Speed);
 
-          // print distance from this bird to each cat and snake before checking HearMovement
-          // so we can manually verify later if HearMovement correctly adds testBird to the right cats and snakes
-           Console.WriteLine("Distance to cat1 = " + testBird.FindDistance(cat1));
-           Console.WriteLine("Distance to cat2 = " + testBird.FindDistance(cat2));
-           Console.WriteLine("Distance to snake1 = " + testBird.FindDistance(snake1));
-           Console.WriteLine("Distance to snake2 = " + testBird.FindDistance(snake2));
+                // print distance from this bird to each cat and snake before checking HearMovement
+                // so we can manually verify later if HearMovement correctly adds testBird to the right cats and snakes
+                Console.WriteLine("Distance to cat1 = " + testBird.FindDistance(cat1));
+                Console.WriteLine("Distance to cat2 = " + testBird.FindDistance(cat2));
+                Console.WriteLine("Distance to snake1 = " + testBird.FindDistance(snake1));
+                Console.WriteLine("Distance to snake2 = " + testBird.FindDistance(snake2));
 
-          // testBird calls HearMovement to tell nearby cats and snakes about its speed
-           // if speed is more than 5, all cats within 15 units get added to their HeardBirds
-          // if speed is more than 10, all snakes within 10 units also get added
-          testBird.HearMovement(allCats, allSnakes);
+                // testBird calls HearMovement to tell nearby cats and snakes about its speed
+                // if speed is more than 5, all cats within 15 units get added to their HeardBirds
+                // if speed is more than 10, all snakes within 10 units also get added
+                 testBird.HearMovement(allCats, allSnakes);
 
-           // print how many birds cat1 has heard, count of birds added to cat1's HeardBirds
-           Console.WriteLine("\ncat1 HeardBirds count = " + cat1.HeardBirds.GetCount());
-           // print how many birds snake1 has heard, count of birds added to snake's HeardBirds
-           Console.WriteLine("snake1 HeardBirds count = " + snake1.HeardBirds.GetCount());
+                 // print how many birds cat1 has heard, count of birds added to cat1's HeardBirds
+                 Console.WriteLine("\ncat1 HeardBirds count = " + cat1.HeardBirds.GetCount());
+                 // print how many birds snake1 has heard, count of birds added to snake's HeardBirds
+                 Console.WriteLine("snake1 HeardBirds count = " + snake1.HeardBirds.GetCount());
 
         } 
 

@@ -6,12 +6,19 @@ public class Snake : Animal
      // it updates every time the snake moves
      public DoublyLinkedList<Animal> SmellList { get; set; }
 
+      // HeardBirds stores birds that told this snake their speed
+    // because they were moving fast and within range
+     public DoublyLinkedList<Bird> HeardBirds { get; set; }
+
      // constructor calls base Animal constructor to set Name, ID, X, Y, Z
     //we add id and z as per assignment3 
     public Snake(string name, string id, int x, int y, int z) : base(name, id, x, y, z)
     {
         // SmellList is Snake specific so we initialize it here
          SmellList = new DoublyLinkedList<Animal>();
+
+        //initialize empty HearBird list to store bird itself
+        HeardBirds = new DoublyLinkedList<Bird>();
     }
     
 

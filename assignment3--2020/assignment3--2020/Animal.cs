@@ -1,6 +1,9 @@
 
 Using System; 
-public class Animal
+
+namespace Assignment3Template
+{
+   public class Animal
 {
    // store animal name and ID
     public string Name { get; set; }

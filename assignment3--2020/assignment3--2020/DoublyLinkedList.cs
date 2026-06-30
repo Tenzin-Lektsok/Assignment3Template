@@ -26,7 +26,7 @@ using System;
 
     // Reference: Udemy — Data Structures and Algorithms in Depth using C#
     // https://www.udemy.com/course/data-structures-and-algorithms-in-depth-using-c-sharp/learn/lecture/23205590#content
-    class DoublyLinkedList<T>
+    public class DoublyLinkedList<T>
     {
         //Within doubly linked list class we declare head of type node to store reference of first Node of doubly linked list
         public Node<T> head;
@@ -467,10 +467,11 @@ using System;
             // Math.Abs() removes the negative sign so the number becomes positive
             //% (size + 1) shrink the huge number down to valid positon from 0 to size.
             // we use size + 1 so the tail position is also possible
-            int position = Math.Abs(MyrandomNumGen.GetRandom()) % (size +1);
-            
+            Random random = new Random();
+            int position = random.Next(size + 1);
+
             // if position is 0 we insert at the head using AddFirst
-            if(position == 0)
+            if (position == 0)
             {
                 AddFirst(element);
 

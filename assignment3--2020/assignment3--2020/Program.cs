@@ -264,6 +264,50 @@ namespace Assignment3Template
             Console.WriteLine("Total animals in simulation: " + allAnimals.GetCount());        
 
         }
+              Console.WriteLine("\n=== Smell Testing ===");     
+            // before we call UpdateSmell, cat1's SmellList is empty as nothing added yet
+            Console.WriteLine("Test 1: cat1 SmellList count = " + cat1.SmellList.GetCount()); 
+
+            // call UpdateSmell so cat1 checks distance with each animal in allAnimals list one at a time
+            //if that animal is within 10 units, cat1 adds it to its own SmellList
+           cat1.UpdateSmell(allAnimals);
+          // print how many animals got added proves the list can grow
+            Console.WriteLine("After UpdateSmell, cat1 SmellList count = " + cat1.SmellList.GetCount());
+            cat1.SmellList.PrintAllForward();
+
+            // snake1 works the same way as cat1, this proves UpdateSmell works for snakes too
+            snake1.UpdateSmell(allAnimals);
+
+            // cat1 eats a bird so that bird is removed from the birds list
+            cat1.EatBird(birds);
+
+            // bird is eaten and removed from birds list but it still sitting in allAnimals
+            // since allAnimals never gets updated when birds is changed
+            // we clear allAnimals and rebuild it the same way as before
+            // using cats, snakes, and the updated birds list 
+            // create brand new empty allAnimals list.
+            allAnimals = new DoublyLinkedList<Animal>();
+            allAnimals.AddLast(cat1);
+            allAnimals.AddLast(cat2);
+            allAnimals.AddLast(snake1);
+            allAnimals.AddLast(snake2);
+
+           // loop through birds list again and add only the birds that are still alive
+           b = birds.head;
+           while (b != null)
+           {
+               allAnimals.AddLast(b.element);
+              b = b.next;
+            }
+
+            // call UpdateSmell again with the rebuild allAnimals
+            //  bird1 was eaten so we rebuilt allAnimals without it
+            // cat1's SmellList updates correctly and no longer includes bird1
+             cat1.UpdateSmell(allAnimals);
+             Console.WriteLine("cat1 SmellList count after eating a bird = " + cat1.SmellList.GetCount());
+
+        } 
+
 
 
     }

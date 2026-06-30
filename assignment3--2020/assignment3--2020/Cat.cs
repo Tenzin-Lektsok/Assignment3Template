@@ -1,5 +1,7 @@
 using System;
-// Cat inherits from Animal, gets Name, ID, X, Y, Z and FindDistance for free
+namespace Assignment3Template
+{
+    // Cat inherits from Animal, gets Name, ID, X, Y, Z and FindDistance for free
 // we remove Name, X, Y from Cat because they now come from Animal base class
 public class Cat : Animal
 {
@@ -90,4 +92,7 @@ public class Cat : Animal
     {
         return Name + "(ID:" + ID + " X:" + X + " Y:" + Y + " Z:" + Z + ")";
     }
+}
+
+    
 }

@@ -1,4 +1,8 @@
-public class Bird : Animal
+using System;
+
+namespace Assignment3Template
+{
+    public class Bird : Animal
 {
     // declare Speed as a property of type double to track how far the bird moved in each round
     // double is used because speed can have decimal values like 14.28
@@ -115,4 +119,5 @@ public class Bird : Animal
             }
 
 
+}
 }

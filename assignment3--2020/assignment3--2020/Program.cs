@@ -68,8 +68,10 @@ namespace Assignment3Template
             */
 
             PriorityQueueAndHashTableTest();
+            DoublyLinkedListTest();
             AnimalSimulationTest();
         }
+
         static void PriorityQueueAndHashTableTest()
         {
             Console.WriteLine("==== Priority Queue and HashTable Test ====\n");
@@ -124,7 +126,7 @@ namespace Assignment3Template
             Console.WriteLine("\nHashTable Testing");
 
             string[] demoStrings = { "Srivastava", "Hurley", "Mitchell", "McConnell", "Feng",
-        "Noorian", "Young", "Smith", "Northrop", "Andreau" };
+                "Noorian", "Young", "Smith", "Northrop", "Andreau" };
 
             HashTable<string> myhashtable = new HashTable<string>(20);
 
@@ -137,8 +139,77 @@ namespace Assignment3Template
             Console.WriteLine("Find Smith: " + myhashtable.Find("Smith"));
             Console.WriteLine("Find MissingName: " + myhashtable.Find("MissingName"));
 
+            Console.WriteLine();
+        }
 
-        Console.WriteLine();
+        static void DoublyLinkedListTest()
+        {
+            Console.WriteLine("==== DoublyLinkedList Test ====\n");
+
+            DoublyLinkedList<int> list = new DoublyLinkedList<int>();
+
+            Console.WriteLine("Initial count: " + list.GetCount());
+
+            list.AddFirst(10);
+            list.AddLast(20);
+            list.AddLast(30);
+
+            Console.WriteLine("\nAfter AddFirst and AddLast:");
+            list.PrintAllForward();
+            Console.WriteLine("Count: " + list.GetCount());
+
+            list.InsertAtRandomLocation(25);
+            Console.WriteLine("\nAfter InsertAtRandomLocation:");
+            list.PrintAllForward();
+
+            Console.WriteLine("\nFind 20:");
+            Console.WriteLine(list.Find(20));
+
+            list.AddBefore(20, 15);
+            Console.WriteLine("\nAfter AddBefore 20:");
+            list.PrintAllForward();
+
+            list.AddAfter(20, 25);
+            Console.WriteLine("\nAfter AddAfter 20:");
+            list.PrintAllForward();
+
+            list.Swap(15, 25);
+            Console.WriteLine("\nAfter Swap 15 and 25:");
+            list.PrintAllForward();
+
+            list.RotateLeft();
+            Console.WriteLine("\nAfter RotateLeft:");
+            list.PrintAllForward();
+
+            list.RotateRight();
+            Console.WriteLine("\nAfter RotateRight:");
+            list.PrintAllForward();
+
+            list.Sort();
+            Console.WriteLine("\nAfter Sort:");
+            list.PrintAllForward();
+
+            Console.WriteLine("\nPrint Reverse:");
+            list.PrintAllReverse();
+
+            list.DeleteFirst();
+            Console.WriteLine("\nAfter DeleteFirst:");
+            list.PrintAllForward();
+
+            list.DeleteLast();
+            Console.WriteLine("\nAfter DeleteLast:");
+            list.PrintAllForward();
+
+            DoublyLinkedList<int> secondList = new DoublyLinkedList<int>();
+            secondList.AddLast(100);
+            secondList.AddLast(200);
+
+            list.Merge(secondList);
+            Console.WriteLine("\nAfter Merge:");
+            list.PrintAllForward();
+
+            Console.WriteLine("\nFinal count: " + list.GetCount());
+            Console.WriteLine();
         }
 
         static void AnimalSimulationTest()
